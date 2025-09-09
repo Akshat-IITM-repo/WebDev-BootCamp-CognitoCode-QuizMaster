@@ -13,6 +13,7 @@ class User(db.Model):
     user_email = db.Column(db.String(50),unique=True,nullable=False)
     user_password = db.Column(db.String(250),nullable=False)
 
+    roles = db.relationship('Role', secondary='user_role', backref='user', lazy=True)
     customer_details = db.relationship('Customer', backref='user', lazy=True, uselist=False)
     store_manager_details = db.relationship('StoreManager', backref='user', lazy=True, uselist=False)
 
